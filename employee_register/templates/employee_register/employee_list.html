@@ -1,0 +1,184 @@
+{% extends "employee_register/base.html" %}
+
+{% block content %}
+{% csrf_token %}
+
+<style>
+
+.roundedCorners{
+margin-left:auto;
+margin-right:auto;
+width:100%
+}
+
+
+table.roundedCorners td,
+table.roundedCorners th {
+  border-bottom: 1px solid black;
+  padding: 10px;
+  }
+
+h2{
+  text-align:center;
+  }
+
+  table.roundedCorners tr:last-child > td {
+  border-bottom: none;
+}
+
+</style>
+<div class="top"></div>
+
+<div id="employee_details" style="text-align:center">
+    <a href="#working_history"><button class="btn btn-dark">To Working History</button></a>
+    <a href="#salary_information"><button class="btn btn-dark">To Salary Information</button></a>
+    <a href="#contact_information"><button class="btn btn-dark">To Contact Information</button></a>
+</div>
+<br>
+<h2 ><i><b>Employee Details</b></i></h2>
+<table class="roundedCorners" style="background:#806543; border-radius:13px; border-spacing: 0;opacity:0.9" >
+        <tr style="color:white">
+            <td>Employee ID</td>
+            <td>Department</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Qualification</td>
+            <td>Date Of Birth</td>
+            <td>Gender</td>
+            <td>City</td>
+            <td>Pincode</td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        {% for emp in employee_list1 %}
+            <tr style="color:orange;">
+                <td>{{emp.Employee_ID_number}}</td>
+                <td>{{emp.Department}}</td>
+                <td>{{emp.First_name}}</td>
+                <td>{{emp.last_name}}</td>
+                <td>{{emp.Qualification}}</td>
+                <td>{{emp.DOB}}</td>
+                <td>{{emp.Gender}}</td>
+                <td>{{emp.City}}</td>
+                <td>{{emp.Pincode}}</td>
+                <td>
+                    <form action="{% url 'employee_register:employee_delete' emp.Employee_ID_number %}" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">
+                            <i class="fa fa-trash" aria-hidden="true" style="color:white"></i>
+                        </button>
+                    </form>
+                </td>
+
+            </tr>
+        {% endfor %}
+
+</table>
+
+<br>
+<br>
+
+<div id="working_history" style="text-align:center">
+    <a href="#employee_details"><button class="btn btn-dark">To Employee Details</button></a>
+    <a href="#salary_information"><button class="btn btn-dark">To Salary Information</button></a>
+    <a href="#contact_information"><button class="btn btn-dark">To Contact Information</button></a>
+</div>
+<br>
+
+
+<h2 ><i><b>Working History</b></i></h2>
+<table class="roundedCorners" style="background:#806543; border-radius:13px; border-spacing: 0;opacity:0.9" >
+        <tr style="color:white">
+            <td>Employee ID</td>
+            <td>Start Date</td>
+            <td>Previous Occupation</td>
+            <td>Previous Company</td>
+            <td>Experience(in years)</td>
+        </tr>
+        {% for emp in employee_list2 %}
+            <tr style="color:orange;">
+                <td>{{emp.Employee_ID_number.Employee_ID_number}}</td>
+                <td>{{emp.StartDate}}</td>
+                <td>{{emp.PreviousOccupation}}</td>
+                <td>{{emp.PreviousCompany}}</td>
+                <td>{{emp.Experience_in_years}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<br>
+<br>
+
+<br>
+<br>
+
+<div id="salary_information" style="text-align:center">
+    <a href="#employee_details"><button class="btn btn-dark">To Employee Details</button></a>
+    <a href="#working_history"><button class="btn btn-dark">To Working History</button></a>
+    <a href="#contact_information"><button class="btn btn-dark">To Contact Information</button></a>
+</div>
+<br>
+
+<h2 ><i><b>Salary Information</b></i></h2>
+<table class="roundedCorners" style="background:#806543; border-radius:13px; border-spacing: 0;opacity:0.9" >
+        <tr style="color:white">
+            <td>Employee ID</td>
+            <td>Salary(per month)</td>
+            <td>Tax</td>
+            <td>Number Of Hours Worked</td>
+            <td>Number of Leaves</td>
+            <td>Grand Total</td>
+        </tr>
+        {% for emp in employee_list3 %}
+            <tr style="color:orange;">
+                <td>{{emp.Employee_ID_number.Employee_ID_number}}</td>
+                <td>{{emp.basic_salary_per_month}}</td>
+                <td>{{emp.tax_cut_percentage}}</td>
+                <td>{{emp.Number_of_hours_worked}}</td>
+                <td>{{emp.Number_of_leaves}}</td>
+                <td>{{emp.Grand_Total|floatformat:2}}</td>
+            </tr>
+        {% endfor %}
+</table>
+
+
+<br>
+<br>
+
+<div id="contact_information" style="text-align:center">
+    <a href="#employee_details"><button class="btn btn-dark" >To Employee Details</button></a>
+    <a href="#working_history"><button class="btn btn-dark">To Working History</button></a>
+    <a href="#salary_information"><button class="btn btn-dark">To Salary Information</button></a>
+</div>
+<br>
+<h2 ><i><b>Contact Information</b></i></h2>
+<table class="roundedCorners" style="background:#806543; border-radius:13px; border-spacing: 0;opacity:0.9" >
+        <tr style="color:white;">
+            <td>Employee ID</td>
+            <td>Company Phone Number</td>
+            <td>Personal Phone Number</td>
+            <td>Landline Number</td>
+        </tr>
+        {% for emp in employee_list4 %}
+            <tr style="color:orange;">
+                <td>{{emp.Employee_ID_number.Employee_ID_number}}</td>
+                <td>{{emp.Company_Phone_Number}}</td>
+                <td>{{emp.Personal_Phone_Number}}</td>
+                <td>{{emp.Landline_Number}}</td>
+            </tr>
+        {% endfor %}
+</table>
+
+<br>
+<br>
+
+<div style="text-align:center; margin-bottom:10px">
+    <a href="#employee_details"><button class="btn btn-dark" >To Employee Details</button></a>
+    <a href="#working_history"><button class="btn btn-dark">To Working History</button></a>
+    <a href="#salary_information"><button class="btn btn-dark">To Salary Information</button></a>
+    <a href="#contact_information"><button class="btn btn-dark">To Contact Information</button></a>
+    <a href="#top"><button class="btn btn-dark">To top</button></a>
+</div>
+{% endblock %}

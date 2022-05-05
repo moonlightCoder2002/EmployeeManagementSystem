@@ -1,0 +1,116 @@
+{% extends "employee_register/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form action="" method="post" autocomplete="off" style="color:#17252A">
+    {% csrf_token %}
+    <h2><u><b>Employee Details</b></u></h2>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            {{form1.Employee_ID_number|as_crispy_field}}
+        </div>
+        <div class="col-md-8">
+            {{form1.Department|as_crispy_field}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            {{form1.First_name|as_crispy_field}}
+        </div>
+        <div class="col-md-6">
+            {{form1.last_name|as_crispy_field}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            {{form1.Qualification|as_crispy_field}}
+        </div>
+        <div class="col-md-4">
+            {{form1.DOB|as_crispy_field}}
+        </div>
+        <div class="col-md-4">
+            {{form1.Gender|as_crispy_field}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            {{form1.City|as_crispy_field}}
+        </div>
+        <div class="col-md-2">
+            {{form1.Pincode|as_crispy_field}}
+        </div>
+    </div>
+
+    <hr>
+
+    <h2><u><b>Working History</b></u></h2>
+    <br>
+    <div class="row">
+        <div class="col-md-3">
+            {{form2.StartDate|as_crispy_field}}
+        </div>
+        <div class="col-md-3">
+            {{form2.PreviousOccupation|as_crispy_field}}
+        </div>
+         <div class="col-md-3">
+            {{form2.PreviousCompany|as_crispy_field}}
+        </div>
+         <div class="col-md-3">
+            {{form2.Experience_in_years|as_crispy_field}}
+        </div>
+    </div>
+
+    <hr>
+
+    <h2><u><b>Salary Information</b></u></h2>
+    <br>
+    <div class="row">
+        <div class="col-md-6" >
+            {{form3.basic_salary_per_month|as_crispy_field}}
+        </div>
+        <div class="col-md-6" >
+            {{form3.tax_cut_percentage|as_crispy_field}}
+        </div>
+        <div class="col-md-6">
+            {{form3.Number_of_hours_worked|as_crispy_field}}
+        </div>
+        <div class="col-md-6" >
+            {{form3.Number_of_leaves|as_crispy_field}}
+        </div>
+
+    </div>
+
+    <hr>
+
+    <h2><u><b>Contact Information</b></u></h2>
+    <br>
+    <div class="row">
+        <div class="col-md-4" >
+            {{form4.Company_Phone_Number|as_crispy_field}}
+        </div>
+        <div class="col-md-4" >
+            {{form4.Personal_Phone_Number|as_crispy_field}}
+        </div>
+        <div class="col-md-4" >
+            {{form4.Landline_Number|as_crispy_field}}
+        </div>
+
+    </div>
+
+    <br>
+
+     <div class="row">
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+                Submit</button>
+        </div>
+    </div>
+
+    <br><br>
+</form>
+
+
+
+
+{% endblock %}

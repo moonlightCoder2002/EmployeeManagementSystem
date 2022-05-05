@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<title>Employee Management App</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url();
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+</style>
+<body style="background-color: #9FEDD7;">
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-card" style="color:#182628" id="myNavbar">
+    <div class="w3-bar-item w3-button w3-wide">DASHBOARD</div>
+    <!-- Right-sided navbar links -->
+    <div class="w3-left w3-hide-small">
+      <a href="{% url 'employee_register:employee_insert' %}" class="w3-bar-item w3-button"><i class="fa fa-user"></i> ADD EMPLOYEE</a>
+      <a href="{% url 'employee_register:employee_list' %}" class="w3-bar-item w3-button"><i class="fa fa-list"></i> VIEW EMPLOYEE LIST</a>
+      <a href="{% url 'employee_register:employee_list_search' %}" class="w3-bar-item w3-button"><i class="fa fa-search"></i>SEARCH</a>
+      <a href="#about" class="w3-bar-item w3-button"><i class="fa fa-globe"></i>ABOUT</a>
+    </div>
+     <div class="w3-right w3-hide-small">
+      {% if user.is_authenticated %}
+            <form class='logout-link' action="{% url 'employee_register:logout' %}" method="post" >
+                {% csrf_token %}
+                <button class="w3-bar-item w3-button" type="submit"><i class="fa fa-sign-out" >LOGOUT</i></button>
+            </form>
+      {% endif %}
+      </div>
+
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+
+</div>
+
+<!-- Header with full-height image -->
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-left w3-text-white" style="padding:48px">
+    &nbsp
+    &nbsp
+    &nbsp
+    &nbsp
+    &nbsp
+    &nbsp
+    &nbsp
+    <span class="w3-jumbo w3-hide-small" style="color:black">Employee Database Management System</span><br>
+
+  </div>
+
+</header>
+
+<!-- About Section -->
+<div class="w3-container" style="padding:128px 16px" id="about">
+  <h3 class="w3-center" style="color:#687864">ABOUT THE SYSTEM</h3>
+  <div class="w3-row-padding w3-center" style="margin-top:64px">
+    <div class="w3-third">
+      <i class="fa fa-user w3-margin-bottom w3-jumbo w3-center" style="color:#687864"></i>
+      <p class="w3-large" style="color:#687864" >Add Employee</p>
+      <p style="color:#687864">This operation provides a form to input the details of an employee and stores the entered information to the database (DB.sqlite) for that employee. </p>
+    </div>
+    <div class="w3-third">
+      <i class="fa fa-list w3-margin-bottom w3-jumbo" style="color:#687864"></i>
+      <p class="w3-large" style="color:#687864">View Employee List</p>
+      <p style="color:#687864">This operation presents a list of all the employees in the database. The list is presented as a row
+      with each row entitled to a unique person and at the end of row of first table, there is a update and delete option.</p>
+    </div>
+    <div class="w3-third">
+      <i class="fa fa-search w3-margin-bottom w3-jumbo" style="color:#687864"></i>
+      <p class="w3-large" style="color:#687864">Search</p>
+      <p style="color:#687864">This operation presents a list of all employees just like the <u>View Employee List</u> but helps admin search employees or even
+      a particular employee(if the employee ID is known)</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <p class="w3-hover-text-green"><i>Made by Aarambh</i></a></p>
+</footer>
+
+<script>
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
+
+
+
+</body>
+</html>
+
+
